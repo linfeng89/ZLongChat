@@ -1,0 +1,45 @@
+<Project>
+
+  <!--
+    Central Package Management（CPM）：包版本只在**这一个文件**里维护。
+
+    开启后，各个 csproj 里的 <PackageReference> 只写包名、不写 Version，
+    MSBuild 会到本文件里查版本。这样：
+      - 同一个包被多个项目引用时，版本天然一致，不会出现「PC 用 10.0.9、AiBot 用 10.0.12」
+      - 升级包只改一行，全解决方案生效
+      - 新增项目忘记写版本号会直接编译报错，而不是悄悄拉到别的版本
+
+    个别项目确实需要不同版本时，可在该项目里写 <PackageReference ... Version="x" /> 覆盖，
+    同时用 <PackageVersion Update="..." /> 调整，或对该包设 ManagePackageVersionsCentrally=false。
+  -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ===== 通信层 ===== -->
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.12" />
+    <PackageVersion Include="SIPSorcery" Version="10.0.16" />
+
+    <!-- ===== AI 能力层 ===== -->
+    <PackageVersion Include="Microsoft.Extensions.AI.Abstractions" Version="10.7.0" />
+
+    <!-- ===== MCP 层（官方 C# SDK）===== -->
+    <PackageVersion Include="ModelContextProtocol.AspNetCore" Version="2.0.0" />
+
+    <!-- ===== 配置与日志 ===== -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="10.0.12" />
+
+    <!-- ===== 后端 ===== -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+
+    <!-- ===== 前端 ===== -->
+    <PackageVersion Include="MemoryPack" Version="1.21.4" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    AI 能力层：与「通信层」平级的能力抽象。
+    - 只依赖 Contracts（共用 ChatMessage）与 Microsoft.Extensions.AI 的抽象包
+    - 不依赖任何具体大模型 SDK（OpenAI / Ollama / Azure 由宿主决定）
+    - 换模型 / 换厂商 = 换一个 IAiAssistant 实现，业务代码零改动
+
+    公共构建属性与包版本见解决方案根的 Directory.Build.props / Directory.Packages.props。
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLongChat.Contracts\ZLongChat.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 只要抽象包：真正的 provider（OpenAI / Ollama / Azure）由宿主项目自行引入 -->
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+
+</Project>

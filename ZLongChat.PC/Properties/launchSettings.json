@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ZLongChat.PC": {
+      "commandName": "Project"
+    },
+    "ZLongChat.PC.B": {
+      "commandName": "Project"
+    }
+  }
+}

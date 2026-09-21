@@ -1,0 +1,565 @@
+{
+    "tools":  [
+                  {
+                      "name":  "cancel_signal",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "signalId":  {
+                                                                              "description":  "信号 ID",
+                                                                              "type":  "string"
+                                                                          },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "signalId",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "catch_signal",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "signalId":  {
+                                                                              "description":  "信号 ID",
+                                                                              "type":  "string"
+                                                                          },
+                                                             "firstMessage":  {
+                                                                                  "description":  "第一句话，最多 500 字",
+                                                                                  "type":  "string"
+                                                                              },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "signalId",
+                                                           "firstMessage",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "end_session",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "get_active_signals",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "tags":  {
+                                                                          "description":  "按标签筛选，可留空",
+                                                                          "type":  [
+                                                                                       "array",
+                                                                                       "null"
+                                                                                   ],
+                                                                          "items":  {
+                                                                                        "type":  [
+                                                                                                     "string",
+                                                                                                     "null"
+                                                                                                 ]
+                                                                                    },
+                                                                          "default":  null
+                                                                      },
+                                                             "cursor":  {
+                                                                            "description":  "分页游标，首页留空",
+                                                                            "type":  [
+                                                                                         "string",
+                                                                                         "null"
+                                                                                     ],
+                                                                            "default":  null
+                                                                        },
+                                                             "limit":  {
+                                                                           "description":  "每页条数，1–20，默认 10",
+                                                                           "type":  "integer",
+                                                                           "default":  10
+                                                                       }
+                                                         }
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/signals.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "get_my_state",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+
+                                                         }
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/state.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "get_signal_detail",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "signalId":  {
+                                                                              "description":  "信号 ID",
+                                                                              "type":  "string"
+                                                                          }
+                                                         },
+                                          "required":  [
+                                                           "signalId"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/signal-detail.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "get_signal_detail_content",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "signalId":  {
+                                                                              "description":  "信号 ID",
+                                                                              "type":  "string"
+                                                                          }
+                                                         },
+                                          "required":  [
+                                                           "signalId"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "get_support_resources",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "region":  {
+                                                                            "description":  "地区，可留空",
+                                                                            "type":  [
+                                                                                         "string",
+                                                                                         "null"
+                                                                                     ],
+                                                                            "default":  null
+                                                                        }
+                                                         }
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/crisis.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "open_publish",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+
+                                                         }
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/publish.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "open_session",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           }
+                                                         },
+                                          "required":  [
+                                                           "sessionId"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "openWorldHint":  false,
+                                          "readOnlyHint":  true
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "resourceUri":  "ui://shudong/chat.html?v=1",
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "publish_signal",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "content":  {
+                                                                             "description":  "倾诉内容，最多 1000 字",
+                                                                             "type":  "string"
+                                                                         },
+                                                             "tags":  {
+                                                                          "description":  "标签，最多 3 个",
+                                                                          "type":  [
+                                                                                       "array",
+                                                                                       "null"
+                                                                                   ],
+                                                                          "items":  {
+                                                                                        "type":  [
+                                                                                                     "string",
+                                                                                                     "null"
+                                                                                                 ]
+                                                                                    }
+                                                                      },
+                                                             "mode":  {
+                                                                          "description":  "broadcast=只希望被听到（不可接住）；companion=需要陪伴（可接住）",
+                                                                          "type":  "string"
+                                                                      },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键，客户端生成的 UUID",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "content",
+                                                           "tags",
+                                                           "mode",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "report",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "reason":  {
+                                                                            "description":  "原因：harassment / sexual / fraud / self_harm / violence / other",
+                                                                            "type":  "string"
+                                                                        },
+                                                             "detail":  {
+                                                                            "description":  "补充说明，可留空",
+                                                                            "type":  [
+                                                                                         "string",
+                                                                                         "null"
+                                                                                     ]
+                                                                        },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "reason",
+                                                           "detail",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "request_extension",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "request_human",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "respond_extension",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "accept":  {
+                                                                            "description":  "是否同意延长",
+                                                                            "type":  "boolean"
+                                                                        },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "accept",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "model",
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  },
+                  {
+                      "name":  "send_message",
+                      "inputSchema":  {
+                                          "type":  "object",
+                                          "properties":  {
+                                                             "sessionId":  {
+                                                                               "description":  "会话 ID",
+                                                                               "type":  "string"
+                                                                           },
+                                                             "content":  {
+                                                                             "description":  "消息内容",
+                                                                             "type":  "string"
+                                                                         },
+                                                             "idempotencyKey":  {
+                                                                                    "description":  "幂等键",
+                                                                                    "type":  "string"
+                                                                                }
+                                                         },
+                                          "required":  [
+                                                           "sessionId",
+                                                           "content",
+                                                           "idempotencyKey"
+                                                       ]
+                                      },
+                      "annotations":  {
+                                          "idempotentHint":  true,
+                                          "openWorldHint":  false
+                                      },
+                      "meta":  {
+                                   "ui":  {
+                                              "visibility":  [
+                                                                 "app"
+                                                             ]
+                                          }
+                               }
+                  }
+              ],
+    "resources":  [
+                      {
+                          "uri":  "ui://shudong/chat.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      },
+                      {
+                          "uri":  "ui://shudong/crisis.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      },
+                      {
+                          "uri":  "ui://shudong/publish.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      },
+                      {
+                          "uri":  "ui://shudong/signal-detail.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      },
+                      {
+                          "uri":  "ui://shudong/signals.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      },
+                      {
+                          "uri":  "ui://shudong/state.html?v=1",
+                          "mimeType":  "text/html;profile=mcp-app"
+                      }
+                  ]
+}

@@ -1,0 +1,20 @@
+<Solution>
+  <!-- 契约层：前后端共用的数据结构与协议常量 -->
+  <Project Path="ZLongChat.Contracts/ZLongChat.Contracts.csproj" />
+  <!-- 领域层：与传输方式无关的业务实现（内存实现可直接换 Redis / 数据库） -->
+  <Project Path="ZLongChat.Core/ZLongChat.Core.csproj" />
+  <!-- MCP 层：把领域能力暴露成 MCP 工具与 UI 资源（薄适配 + 鉴权） -->
+  <Project Path="ZLongChat.Mcp/ZLongChat.Mcp.csproj" />
+  <!-- 通信层：通信接口抽象 + SignalR / WebRTC / HTTP 实现 -->
+  <Project Path="ZLongChat.Communication/ZLongChat.Communication.csproj" />
+  <!-- AI 能力层：IAiAssistant 抽象 + Microsoft.Extensions.AI 适配 -->
+  <Project Path="ZLongChat.Ai/ZLongChat.Ai.csproj" />
+  <!-- AI 机器人宿主：以「普通用户」身份接入 Hub 的独立进程 -->
+  <Project Path="ZLongChat.AiBot/ZLongChat.AiBot.csproj" />
+  <!-- 后端：调度服务 -->
+  <Project Path="ZLongChat.API/ZLongChat.API.csproj" Id="39457c72-713e-4bdc-98ae-6f05c0b80199" />
+  <!-- 前端：WPF 客户端 -->
+  <Project Path="ZLongChat.PC/ZLongChat.PC.csproj" Id="6d111d4e-a4fa-4c1c-9274-a2828036da3e">
+    <BuildDependency Project="ZLongChat.API/ZLongChat.API.csproj" />
+  </Project>
+</Solution>

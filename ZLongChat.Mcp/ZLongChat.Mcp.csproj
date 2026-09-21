@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    MCP 层：把树洞泡泡的能力暴露成 MCP 工具与 UI 资源。
+    定位是**薄层** —— 只做协议适配与鉴权，业务逻辑全在 ZLongChat.Core。
+
+    依赖方向：
+      ZLongChat.Api  ──引用──>  ZLongChat.Mcp  ──引用──>  ZLongChat.Core ──> Contracts
+      （Api 是宿主/组合根，负责把 Core 的实现注册进 DI）
+  -->
+
+  <PropertyGroup>
+    <RootNamespace>ZLongChat.Mcp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLongChat.Contracts\ZLongChat.Contracts.csproj" />
+    <ProjectReference Include="..\ZLongChat.Core\ZLongChat.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol.AspNetCore" />
+  </ItemGroup>
+
+  <!-- MCP 的 HTTP 传输需要 ASP.NET Core（IHttpContextAccessor / 端点映射） -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

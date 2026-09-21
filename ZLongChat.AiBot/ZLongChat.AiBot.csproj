@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    AI 机器人宿主：一个独立的控制台进程，作为「普通用户」连到 Hub。
+    - 独立进程 = 天然的爆炸半径隔离，AI 崩了不影响聊天主链路
+    - 复用通信层现成实现，不新增任何通信代码
+
+    公共构建属性与包版本见解决方案根的 Directory.Build.props / Directory.Packages.props。
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLongChat.Ai\ZLongChat.Ai.csproj" />
+    <ProjectReference Include="..\ZLongChat.Communication\ZLongChat.Communication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 配置文件随程序一起输出；与后端/客户端使用同一套 ZLongChat 节名 -->
+    <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="appsettings.Local.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

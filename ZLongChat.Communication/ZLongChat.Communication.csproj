@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    通信层：只依赖「契约层」，对外暴露一组通信接口 + 若干实现。
+    前端(PC) 只引用本项目的接口，不直接依赖 SignalR / SIPSorcery。
+    要换通信方式（WebSocket / gRPC / MQTT / 原始 TCP），新增一个实现类即可，
+    UI 与业务代码零改动。
+
+    公共构建属性与包版本见解决方案根的 Directory.Build.props / Directory.Packages.props。
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLongChat.Contracts\ZLongChat.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 信令实现（可替换） -->
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
+    <!-- P2P 通道实现（可替换） -->
+    <PackageReference Include="SIPSorcery" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+
+</Project>

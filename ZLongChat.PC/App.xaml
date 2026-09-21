@@ -1,0 +1,9 @@
+<Application x:Class="ZLongChat.PC.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ZLongChat.PC">
+    <!-- 不再用 StartupUri：主窗口由 App.OnStartup 组装完通信层后手动创建（组合根） -->
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

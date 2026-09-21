@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    契约层：前端(PC)、后端(API)、通信层、AI 层共用。
+    只放「双方必须达成一致」的东西：数据结构、协议常量、二进制帧格式、配置模型。
+
+    不引用任何通信实现库（SignalR / SIPSorcery / HttpClient），
+    这样换通信方式时这一层完全不用动。
+
+    目标框架 / 可空性 / 隐式 using / 包版本 / 版本号
+    全部继承自解决方案根目录的 Directory.Build.props 与 Directory.Packages.props，
+    因此本文件不需要重复声明这些属性。
+  -->
+
+</Project>

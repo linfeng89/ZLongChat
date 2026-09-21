@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    领域层：树洞泡泡的业务能力（信号 / 会话 / 安全 / 配额 / 身份）。
+    只依赖契约层。
+
+    为什么单独一层：MCP 层与 Web 层都是"适配器"，
+    它们只依赖这里的端口，不互相依赖，也不重复实现业务逻辑。
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLongChat.Contracts\ZLongChat.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

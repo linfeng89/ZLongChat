@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    后端：调度服务。
+    只依赖契约层（不引用通信层，避免把 SignalR.Client / SIPSorcery 拖进后端）。
+
+    公共构建属性与包版本见解决方案根的 Directory.Build.props / Directory.Packages.props。
+  -->
+
+  <ItemGroup>
+    <!-- 后端与前端共用同一份契约，避免两端字段/方法名对不上 -->
+    <ProjectReference Include="..\ZLongChat.Contracts\ZLongChat.Contracts.csproj" />
+    <!-- MCP 层：树洞泡泡的工具契约与 UI 资源 -->
+    <ProjectReference Include="..\ZLongChat.Mcp\ZLongChat.Mcp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+</Project>
